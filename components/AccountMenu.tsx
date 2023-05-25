@@ -3,11 +3,23 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export default function AccountMenu() {
   const { data: session, status } = useSession()
   const [menuActive, toggleMenuActive] = useState(false)
+  const accountMenu: any = useRef(null)
+
+  const closeActiveMenus = (e: any) => {
+    if (
+      accountMenu.current &&
+      menuActive &&
+      !accountMenu.current.contains(e.target)
+    ) {
+      toggleMenuActive(false)
+    }
+  }
+  document.addEventListener('mousedown', closeActiveMenus)
 
   if (status === 'unauthenticated') {
     return (
@@ -26,7 +38,7 @@ export default function AccountMenu() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative" ref={accountMenu}>
       <button
         type="button"
         className="group flex shrink-0 items-center rounded-lg transition"
@@ -36,7 +48,7 @@ export default function AccountMenu() {
         <Image
           src={session.user?.image ?? '/default-avatar.webp'}
           className="h-10 w-10 rounded-full object-cover"
-          alt="Your Name"
+          alt={session.user?.name || "User's avatar"}
           height={40}
           width={40}
         />
