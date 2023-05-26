@@ -3,19 +3,21 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function AccountMenu() {
   const { data: session, status } = useSession();
   const [menuActive, toggleMenuActive] = useState(false);
   const accountMenu: any = useRef(null);
 
-  const closeActiveMenus = (e: any) => {
-    if (accountMenu.current && menuActive && !accountMenu.current.contains(e.target)) {
-      toggleMenuActive(false);
-    }
-  };
-  document.addEventListener("mousedown", closeActiveMenus);
+  useEffect(() => {
+    const closeActiveMenus = (e: any) => {
+      if (accountMenu.current && menuActive && !accountMenu.current.contains(e.target)) {
+        toggleMenuActive(false);
+      }
+    };
+    document?.addEventListener("mousedown", closeActiveMenus);
+  });
 
   if (status === "unauthenticated") {
     return (
