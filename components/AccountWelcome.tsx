@@ -10,7 +10,7 @@ export default function AccountWelcome() {
   }
 
   return (
-    <div className="mt-8">
+    <div>
       <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
         Welcome Back, {session.user?.name}!
       </h1>
