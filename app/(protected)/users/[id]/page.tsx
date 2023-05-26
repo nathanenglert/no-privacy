@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import TitleLayout from "@/components/TitleLayout";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const user = await prisma.user.findUnique({ where: { id: params.id } });
@@ -28,13 +29,11 @@ export default async function UserProfilePage({ params }: Props) {
   const { name, bio, image, id } = user ?? {};
 
   return (
-    <div>
-      <h1>{name}</h1>
-
+    <TitleLayout name={name || "That One Person"}>
       <img width={300} src={image ?? "/default-avatar.webp"} alt={`${name}'s profile`} />
 
       <h3>Bio</h3>
       <p>{bio}</p>
-    </div>
+    </TitleLayout>
   );
 }
