@@ -1,7 +1,7 @@
-import AccountMenu from '@/components/AccountMenu'
-import AccountWelcome from '@/components/AccountWelcome'
-import SearchBar from '@/components/SearchBar'
-import Link from 'next/link'
+import AccountMenu from "@/components/AccountMenu";
+import AccountWelcome from "@/components/AccountWelcome";
+import SearchBar from "@/components/SearchBar";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -62,5 +62,5 @@ export default function Header() {
         <AccountWelcome />
       </div>
     </header>
-  )
+  );
 }

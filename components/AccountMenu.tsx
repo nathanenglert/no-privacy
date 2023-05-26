@@ -1,27 +1,23 @@
-'use client'
+"use client";
 
-import { useSession, signIn, signOut } from 'next-auth/react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useState, useRef } from 'react'
+import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useRef } from "react";
 
 export default function AccountMenu() {
-  const { data: session, status } = useSession()
-  const [menuActive, toggleMenuActive] = useState(false)
-  const accountMenu: any = useRef(null)
+  const { data: session, status } = useSession();
+  const [menuActive, toggleMenuActive] = useState(false);
+  const accountMenu: any = useRef(null);
 
   const closeActiveMenus = (e: any) => {
-    if (
-      accountMenu.current &&
-      menuActive &&
-      !accountMenu.current.contains(e.target)
-    ) {
-      toggleMenuActive(false)
+    if (accountMenu.current && menuActive && !accountMenu.current.contains(e.target)) {
+      toggleMenuActive(false);
     }
-  }
-  document.addEventListener('mousedown', closeActiveMenus)
+  };
+  document.addEventListener("mousedown", closeActiveMenus);
 
-  if (status === 'unauthenticated') {
+  if (status === "unauthenticated") {
     return (
       <button
         type="button"
@@ -30,11 +26,11 @@ export default function AccountMenu() {
       >
         Sign in
       </button>
-    )
+    );
   }
 
-  if (status === 'loading' || !session) {
-    return <>...</>
+  if (status === "loading" || !session) {
+    return <>...</>;
   }
 
   return (
@@ -46,7 +42,7 @@ export default function AccountMenu() {
       >
         <span className="sr-only">Menu</span>
         <Image
-          src={session.user?.image ?? '/default-avatar.webp'}
+          src={session.user?.image ?? "/default-avatar.webp"}
           className="h-10 w-10 rounded-full object-cover"
           alt={session.user?.name || "User's avatar"}
           height={40}
@@ -113,5 +109,5 @@ export default function AccountMenu() {
         </div>
       )}
     </div>
-  )
+  );
 }
