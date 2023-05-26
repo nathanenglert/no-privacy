@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# No Privacy
+
+- A fictional social network that takes your privacy concerns and conveniently places them on the backburner. This author is using this repository to refresh his Next.js skillset.
+
+<br>
 
 ## Getting Started
 
@@ -6,29 +10,24 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## License & Thanks
 
-## Learn More
+- MIT © [Nathan Englert](https://twitter.com/nathanenglert/)
+- Thanks to [Fireship](https://fireship.io/) for the awesome course
 
-To learn more about Next.js, take a look at the following resources:
+<br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Connect
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<div align="left">
+    <p><a href="https://github.com/nathanenglert"><img alt="GitHub @nathanenglert" align="center" src="https://img.shields.io/badge/GITHUB-gray.svg?colorB=6cc644&style=flat" /></a>&nbsp;<small><strong>(follow)</strong> to stay up to date on what I'm building</small></p>
+    <p><a href="https://www.linkedin.com/in/nathanenglert/"><img alt="LinkedIn @nathanenglert" align="center" src="https://img.shields.io/badge/LINKEDIN-gray.svg?colorB=0077b5&style=flat" /></a>&nbsp;<small><strong>(connect)</strong> to see my professional side</small></p>
+    <p><a href="https://twitter.com/nathanenglert/"><img alt="Twitter @nathanenglert" align="center" src="https://img.shields.io/badge/TWITTER-gray.svg?colorB=1da1f2&style=flat" /></a>&nbsp;<small><strong>(follow)</strong> to see my less professional side</small></p>
+    <p><a href="https://nathanenglert.com/"><img alt="Blog: nathanenglert.com" align="center" src="https://img.shields.io/badge/MY%20BLOG-gray.svg?colorB=4D2AFF&style=flat" /></a>&nbsp;<small><strong>(read)</strong> posts I write from time-to-time</small></p>
+</div>
