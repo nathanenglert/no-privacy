@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Protected",
 };
 
-export default async function ProtectedPage() {
+export default async function UsersPage() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
