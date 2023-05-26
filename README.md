@@ -1,6 +1,6 @@
 # No Privacy
 
-- A fictional social network that takes your privacy concerns and conveniently places them on the backburner. This author is using this repository to refresh his Next.js skillset.
+(👉ﾟヮﾟ)👉 A fictional social network that takes your privacy concerns and conveniently places them on the backburner. This author is using this repository to refresh his Next.js skillset.
 
 <br>
 
