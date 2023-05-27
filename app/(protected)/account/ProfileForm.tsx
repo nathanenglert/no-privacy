@@ -13,7 +13,6 @@ export function ProfileForm({ user }: any) {
     const body = {
       name: formData.get("name"),
       bio: formData.get("bio"),
-      age: formData.get("age"),
       image: formData.get("image"),
     };
 
@@ -30,8 +29,8 @@ export function ProfileForm({ user }: any) {
 
   return (
     <div>
-      <h2>Edit Your Profile</h2>
-      <form onSubmit={updateUser} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+      <h3 className="text-xl sm:text-2xl mt-2">Edit Your Profile</h3>
+      <form onSubmit={updateUser} className="mb-0 mt-8 max-w-md space-y-4">
         <Input
           name={`name`}
           label={`Name`}
@@ -45,12 +44,6 @@ export function ProfileForm({ user }: any) {
           rows={10}
           placeholder={`Enter bio`}
           defaultValue={user?.bio ?? ""}
-        />
-        <Input
-          name={`age`}
-          label={`Age`}
-          placeholder={`Enter age`}
-          defaultValue={user?.name ?? 0}
         />
         <Input
           name={`image`}

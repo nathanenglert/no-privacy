@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import Button from "../Form/Button";
 
 interface Props {
   targetUserId: string;
@@ -49,8 +50,8 @@ export default function FollowClient({ targetUserId, isFollowing }: Props) {
   };
 
   if (isFollowing) {
-    return <button onClick={unfollow}>{!isMutating ? "Unfollow" : "..."}</button>;
+    return <Button onClick={unfollow}>{!isMutating ? "Unfollow" : "..."}</Button>;
   } else {
-    return <button onClick={follow}>{!isMutating ? "Follow" : "..."}</button>;
+    return <Button onClick={follow}>{!isMutating ? "Follow" : "..."}</Button>;
   }
 }

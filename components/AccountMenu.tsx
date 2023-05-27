@@ -83,6 +83,14 @@ export default function AccountMenu() {
             >
               About
             </Link>
+
+            <Link
+              href={`/account`}
+              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              role="menuitem"
+            >
+              Account
+            </Link>
           </div>
 
           <div className="p-2">
