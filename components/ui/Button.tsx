@@ -1,13 +1,13 @@
 import { cva, VariantProps } from "class-variance-authority";
 
 const buttonStyles = cva(
-  "flex items-center justify-center px-4 py-2 rounded font-medium focus:outline-none",
+  "rounded p-[2px] focus:outline-none focus:ring active:text-opacity-75 text-white",
   {
     variants: {
       intent: {
-        primary: "bg-blue-500 text-white",
-        secondary: "bg-gray-200 text-gray-900",
-        danger: "bg-red-500 text-white focus:ring-red-500",
+        primary: "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
+        secondary: "bg-gray-700 text-gray-800",
+        danger: "bg-red-600 text-red-400 hover:text-white",
       },
       fullWidth: {
         true: "w-full",
@@ -20,14 +20,17 @@ const buttonStyles = cva(
 );
 
 export interface ButtonProps extends VariantProps<typeof buttonStyles> {
+  type?: "button" | "submit" | "reset" | undefined;
   children: React.ReactNode;
   onClick?: () => void;
 }
 
-export function Button({ intent, fullWidth, children, ...props }: ButtonProps) {
+export function Button({ intent, fullWidth, type = "button", children, ...props }: ButtonProps) {
   return (
-    <button type="button" className={buttonStyles({ intent, fullWidth })} {...props}>
-      {children}
+    <button type={type} className={buttonStyles({ intent, fullWidth })} {...props}>
+      <span className="block rounded-sm bg-gray-800 px-8 py-3 text-sm font-medium hover:bg-transparent">
+        {children}
+      </span>
     </button>
   );
 }

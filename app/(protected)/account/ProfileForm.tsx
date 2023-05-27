@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/components/Form/Button";
-import Input from "@/components/Form/Input";
-import TextArea from "@/components/Form/TextArea";
+import { Button } from "@ui/Button";
+import Input from "@ui/Input";
+import TextArea from "@ui/TextArea";
 
 export function ProfileForm({ user }: any) {
   const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,9 +52,7 @@ export function ProfileForm({ user }: any) {
           defaultValue={user?.image ?? ""}
         />
 
-        <Button type="submit" color="primary">
-          Save
-        </Button>
+        <Button type="submit">Save</Button>
       </form>
     </div>
   );
