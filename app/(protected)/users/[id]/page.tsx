@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import TitleLayout from "@/components/TitleLayout";
+import FollowButton from "@/components/FollowButton/FollowButton";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const user = await prisma.user.findUnique({ where: { id: params.id } });
@@ -34,6 +35,9 @@ export default async function UserProfilePage({ params }: Props) {
 
       <h3>Bio</h3>
       <p>{bio}</p>
+
+      {/* @ts-expect-error Server Component */}
+      <FollowButton targetUserId={params.id} />
     </TitleLayout>
   );
 }
