@@ -1,5 +1,9 @@
 "use client";
 
+import Button from "@/components/Form/Button";
+import Input from "@/components/Form/Input";
+import TextArea from "@/components/Form/TextArea";
+
 export function ProfileForm({ user }: any) {
   const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,17 +31,37 @@ export function ProfileForm({ user }: any) {
   return (
     <div>
       <h2>Edit Your Profile</h2>
-      <form onSubmit={updateUser}>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" defaultValue={user?.name ?? ""} />
-        <label htmlFor="bio">Bio</label>
-        <textarea name="bio" cols={30} rows={10} defaultValue={user?.bio ?? ""}></textarea>
-        <label htmlFor="age">Age</label>
-        <input type="text" name="age" defaultValue={user?.age ?? 0} />
-        <label htmlFor="image">Profile Image URL</label>
-        <input type="text" name="image" defaultValue={user?.image ?? ""} />
+      <form onSubmit={updateUser} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+        <Input
+          name={`name`}
+          label={`Name`}
+          placeholder={`Enter name`}
+          defaultValue={user?.name ?? ""}
+        />
+        <TextArea
+          name={`bio`}
+          label={`Bio`}
+          columns={30}
+          rows={10}
+          placeholder={`Enter bio`}
+          defaultValue={user?.bio ?? ""}
+        />
+        <Input
+          name={`age`}
+          label={`Age`}
+          placeholder={`Enter age`}
+          defaultValue={user?.name ?? 0}
+        />
+        <Input
+          name={`image`}
+          label={`Profile Image URL`}
+          placeholder={`Enter image URL`}
+          defaultValue={user?.image ?? ""}
+        />
 
-        <button type="submit">Save</button>
+        <Button type="submit" color="primary">
+          Save
+        </Button>
       </form>
     </div>
   );
