@@ -1,26 +1,32 @@
-interface InputData {
+import { cva, VariantProps } from "class-variance-authority";
+
+const inputStyles = cva("w-full rounded p-4 pe-12 text-sm shadow-sm text-white bg-gray-800", {
+  variants: {
+    intent: {
+      primary: "border-gray-700",
+      secondary: "",
+    },
+  },
+  defaultVariants: {
+    intent: "secondary",
+  },
+});
+
+export interface InputData extends VariantProps<typeof inputStyles> {
   name: string;
-  label: string;
-  placeholder: string | null;
-  defaultValue: string | null;
+  placeholder?: string | null;
+  defaultValue?: string | null;
 }
 
-export default function Input({ name, label, placeholder, defaultValue }: InputData) {
+export function Input({ intent, name, placeholder, defaultValue, ...props }: InputData) {
   return (
-    <div>
-      <label htmlFor={name} className="sr-only">
-        {label}
-      </label>
-
-      <div className="relative">
-        <input
-          type="text"
-          name={name}
-          className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-          placeholder={placeholder ?? ""}
-          defaultValue={defaultValue ?? ""}
-        />
-      </div>
-    </div>
+    <input
+      type="text"
+      name={name}
+      className={inputStyles({ intent })}
+      placeholder={placeholder ?? ""}
+      defaultValue={defaultValue ?? ""}
+      {...props}
+    />
   );
 }

@@ -1,36 +1,43 @@
-interface InputData {
+import { cva, VariantProps } from "class-variance-authority";
+
+const textAreaStyles = cva("w-full rounded p-4 pe-12 text-sm shadow-sm text-white bg-gray-800", {
+  variants: {
+    intent: {
+      primary: "border-gray-700",
+      secondary: "",
+    },
+  },
+  defaultVariants: {
+    intent: "secondary",
+  },
+});
+
+export interface TextAreaProps extends VariantProps<typeof textAreaStyles> {
   name: string;
-  label: string;
-  columns: number;
   rows: number;
-  placeholder: string | null;
-  defaultValue: string | null;
+  columns: number;
+  placeholder?: string | null;
+  defaultValue?: string | null;
 }
 
-export default function TextArea({
+export function TextArea({
+  intent,
   name,
-  label,
   columns,
   rows,
   placeholder,
   defaultValue,
-}: InputData) {
+  ...props
+}: TextAreaProps) {
   return (
-    <div>
-      <label htmlFor={name} className="sr-only">
-        {label}
-      </label>
-
-      <div className="relative">
-        <textarea
-          name={name}
-          className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-          placeholder={placeholder ?? ""}
-          defaultValue={defaultValue ?? ""}
-          cols={columns}
-          rows={rows}
-        />
-      </div>
-    </div>
+    <textarea
+      name={name}
+      cols={columns}
+      rows={rows}
+      className={textAreaStyles({ intent })}
+      placeholder={placeholder ?? ""}
+      defaultValue={defaultValue ?? ""}
+      {...props}
+    />
   );
 }
