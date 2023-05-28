@@ -14,19 +14,19 @@ const textAreaStyles = cva("w-full rounded p-4 pe-12 text-sm shadow-sm text-whit
 
 export interface TextAreaProps extends VariantProps<typeof textAreaStyles> {
   name: string;
-  rows: number;
-  columns: number;
-  placeholder?: string | null;
-  defaultValue?: string | null;
+  rows?: number;
+  columns?: number;
+  placeholder?: string;
+  defaultValue?: string;
 }
 
 export function TextArea({
   intent,
   name,
-  columns,
-  rows,
-  placeholder,
-  defaultValue,
+  columns = 30,
+  rows = 5,
+  placeholder = "",
+  defaultValue = "",
   ...props
 }: TextAreaProps) {
   return (
@@ -35,8 +35,8 @@ export function TextArea({
       cols={columns}
       rows={rows}
       className={textAreaStyles({ intent })}
-      placeholder={placeholder ?? ""}
-      defaultValue={defaultValue ?? ""}
+      placeholder={placeholder}
+      defaultValue={defaultValue}
       {...props}
     />
   );

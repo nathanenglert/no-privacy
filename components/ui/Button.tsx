@@ -28,7 +28,7 @@ export interface ButtonProps extends VariantProps<typeof buttonStyles> {
 export function Button({ intent, fullWidth, type = "button", children, ...props }: ButtonProps) {
   return (
     <button type={type} className={buttonStyles({ intent, fullWidth })} {...props}>
-      <span className="block rounded-sm bg-gray-800 px-8 py-3 text-sm font-medium hover:bg-transparent">
+      <span className="rounded-sm bg-gray-800 px-8 py-3 text-sm font-medium hover:bg-transparent inline-flex items-center gap-2">
         {children}
       </span>
     </button>
