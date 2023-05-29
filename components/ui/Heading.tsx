@@ -10,6 +10,7 @@ const headingStyles = cva("inline-flex items-center gap-2", {
       4: "text-l ",
       5: "text-sm mb-1 uppercase text-gray-600 font-bold tracking-wider",
       6: "text-sm",
+      p: "text-white",
     },
     intent: {
       primary: "",
@@ -24,7 +25,7 @@ const headingStyles = cva("inline-flex items-center gap-2", {
 });
 
 export interface HeadingProps extends VariantProps<typeof headingStyles> {
-  level: 1 | 2 | 3 | 4 | 5 | 6;
+  level: 1 | 2 | 3 | 4 | 5 | 6 | "p";
   children: React.ReactNode;
 }
 
@@ -36,7 +37,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
   children = null,
   ...props
 }: HeadingProps) => {
-  const Tag = `h${level}` as HeadingTag;
+  const Tag = level === "p" ? "p" : (`h${level}` as HeadingTag);
   return (
     <Tag className={headingStyles({ intent, level })} {...props}>
       {children}

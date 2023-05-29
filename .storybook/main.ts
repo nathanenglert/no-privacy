@@ -7,7 +7,6 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "storybook-css-modules-preset",
     {
       name: "@storybook/addon-styling",
       options: {
@@ -16,6 +15,7 @@ const config: StorybookConfig = {
         postCss: true,
       },
     },
+    "storybook-css-modules",
   ],
   framework: {
     name: "@storybook/nextjs",
