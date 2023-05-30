@@ -1,36 +1,39 @@
 import { Avatar } from "../ui/Avatar";
 import { Button } from "../ui/Button";
+import { DateTime } from "../ui/DateTime";
 import Heading from "../ui/Heading";
 import { Separator } from "../ui/Separator";
 
-export function Post() {
+export interface PostProps {
+  name: string;
+  avatar: string;
+  publishDate: string;
+  content: string;
+  onReact?: (reaction: string) => void;
+}
+
+export function Post({ name, avatar, publishDate, content, onReact }: PostProps) {
   return (
     <article className="rounded-xl bg-gray-800 p-4 pb-2 relative">
       <div className="flex items-center gap-4">
-        <Avatar
-          alt="Claire Mac"
-          src="https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
-          fallback="CM"
-        />
+        <Avatar alt={name} src={avatar} fallback="CM" />
 
         <div>
-          <h3 className="text-lg font-medium text-white">Claire Mac</h3>
+          <h3 className="text-lg font-medium text-white">{name}</h3>
 
           <div className="flow-root">
-            <time dateTime="2022-10-10 22:45:00" className="block text-xs text-gray-500">
-              Oct 10th at 10:45 PM
-            </time>
+            <DateTime value={publishDate} className="block text-xs text-gray-500" />
           </div>
         </div>
       </div>
 
       <div className="mt-4 mb-4 space-y-2">
-        <Heading level={`p`}>Went to get donuts today, lol</Heading>
+        <Heading level={`p`}>{content}</Heading>
       </div>
       <Separator className={`absolute left-0 right-0`} />
       <div className="space-y-2 ml-[-8px] relative">
         {["👍", "❤️", "😂", "👏", "🤯", "🧐"].map((emoji) => (
-          <Button outline={false} size={`xs`}>
+          <Button outline={false} size={`xs`} onClick={() => onReact && onReact(emoji)}>
             {emoji}
           </Button>
         ))}
