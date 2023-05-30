@@ -22,7 +22,7 @@ function getInitials(fullName: string) {
 
 export function Post({ name, avatar, publishDate, content, onReact }: PostProps) {
   return (
-    <article className="rounded-xl bg-gray-800 p-4 pb-2 relative">
+    <article className="rounded bg-gray-800 p-4 pb-2 relative">
       <div className="flex items-center gap-4">
         <Avatar alt={name} src={avatar} fallback={getInitials(name)} />
 
