@@ -21,3 +21,12 @@ export const Default: Story = {
     content: "Went to get donuts today, lol",
   },
 };
+
+export const BrokenAvatar: Story = {
+  args: {
+    name: "John Doe",
+    avatar: "https://unknown-image.localhost",
+    publishDate: "2022-10-09T02:55:22.578Z",
+    content: "Hey there and stuff",
+  },
+};

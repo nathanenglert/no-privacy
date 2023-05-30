@@ -12,11 +12,19 @@ export interface PostProps {
   onReact?: (reaction: string) => void;
 }
 
+function getInitials(fullName: string) {
+  return fullName
+    .trim()
+    .split(/\s+/) // Split the string into an array of words, handling multiple spaces
+    .map((name) => name.charAt(0)) // Take the first letter of each word
+    .join(""); // Join them into a new string
+}
+
 export function Post({ name, avatar, publishDate, content, onReact }: PostProps) {
   return (
     <article className="rounded-xl bg-gray-800 p-4 pb-2 relative">
       <div className="flex items-center gap-4">
-        <Avatar alt={name} src={avatar} fallback="CM" />
+        <Avatar alt={name} src={avatar} fallback={getInitials(name)} />
 
         <div>
           <h3 className="text-lg font-medium text-white">{name}</h3>
