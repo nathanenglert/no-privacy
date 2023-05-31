@@ -5,6 +5,7 @@ import { CameraIcon, PencilSquareIcon } from "../Icons";
 import { Button } from "../ui/Button";
 import Heading from "../ui/Heading";
 import { TextArea } from "../ui/TextArea";
+import { Toast } from "../ui/Toast";
 
 export interface PostUpdateProps {
   apiUrl: string;
@@ -21,6 +22,7 @@ const prompts = [
 const timeoutMinutes = 1;
 
 export function PostUpdate({ apiUrl, initialContent = "" }: PostUpdateProps) {
+  const [counter, setCounter] = useState(0);
   const [postContent, setPostContent] = useState(initialContent);
   const [isPosting, setIsPosting] = useState(false);
   const [placeholder, setPlaceholder] = useState(() => {
@@ -53,6 +55,7 @@ export function PostUpdate({ apiUrl, initialContent = "" }: PostUpdateProps) {
 
     setPostContent("");
     setIsPosting(false);
+    setCounter(counter + 1);
   };
   const handleUpdate = (value: string) => setPostContent(value);
 
@@ -74,6 +77,7 @@ export function PostUpdate({ apiUrl, initialContent = "" }: PostUpdateProps) {
         <Button type="submit" intent="primary" disabled={isPosting} onClick={() => handleClick()}>
           <PencilSquareIcon /> Post
         </Button>
+        <Toast title={`Success!`} description={`Your post was saved.`} trigger={counter} />
       </div>
     </div>
   );
