@@ -16,6 +16,7 @@ const config: StorybookConfig = {
       },
     },
     "storybook-css-modules",
+    "storybook-addon-mock",
   ],
   framework: {
     name: "@storybook/nextjs",

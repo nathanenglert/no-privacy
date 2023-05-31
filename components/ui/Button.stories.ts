@@ -41,3 +41,11 @@ export const Danger: Story = {
     children: "Button",
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    intent: "primary",
+    children: "Button",
+    disabled: true,
+  },
+};

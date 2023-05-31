@@ -18,6 +18,8 @@ export interface TextAreaProps extends VariantProps<typeof textAreaStyles> {
   columns?: number;
   placeholder?: string;
   defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 export function TextArea({
@@ -25,8 +27,10 @@ export function TextArea({
   name,
   columns = 30,
   rows = 5,
-  placeholder = "",
-  defaultValue = "",
+  placeholder,
+  defaultValue,
+  value,
+  onChange,
   ...props
 }: TextAreaProps) {
   return (
@@ -37,6 +41,8 @@ export function TextArea({
       className={textAreaStyles({ intent })}
       placeholder={placeholder}
       defaultValue={defaultValue}
+      value={value}
+      onChange={(e) => onChange && onChange(e.target.value)}
       {...props}
     />
   );

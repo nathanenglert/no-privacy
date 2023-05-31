@@ -8,9 +8,11 @@ const buttonStyles = cva(
         true: "w-full",
       },
       intent: {
-        primary: "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
-        secondary: "bg-gray-700",
-        danger: "bg-red-600 text-red-400 hover:text-white",
+        primary:
+          "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 disabled:from-pink-300 disabled:via-red-300 disabled:to-yellow-300",
+        secondary: "bg-gray-700 disabled:bg-gray-500",
+        danger:
+          "bg-red-600 text-red-400 hover:text-white disabled:bg-red-400 disabled:text-red-200",
       },
       outline: {
         true: "",
@@ -18,8 +20,12 @@ const buttonStyles = cva(
       },
     },
     compoundVariants: [
-      { intent: "secondary", outline: true, class: "bg-gray-700" },
-      { intent: "secondary", outline: false, class: "bg-gray-800 hover:bg-gray-700" },
+      { intent: "secondary", outline: true, class: "bg-gray-700 disabled:bg-gray-500" },
+      {
+        intent: "secondary",
+        outline: false,
+        class: "bg-gray-800 hover:bg-gray-700 disabled:bg-gray-600",
+      },
     ],
     defaultVariants: {
       intent: "secondary",
@@ -29,6 +35,10 @@ const buttonStyles = cva(
 
 const innerStyles = cva("rounded-sm text-sm font-medium inline-flex items-center gap-2", {
   variants: {
+    disabled: {
+      true: "bg-gray-600",
+      false: "",
+    },
     outline: {
       true: "bg-gray-800 hover:bg-transparent",
       false: "",
@@ -47,6 +57,7 @@ const innerStyles = cva("rounded-sm text-sm font-medium inline-flex items-center
 });
 
 export interface ButtonProps extends VariantProps<typeof buttonStyles> {
+  disabled?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
   size?: "l" | "m" | "sm" | "xs" | null;
   children: React.ReactNode;
@@ -54,17 +65,27 @@ export interface ButtonProps extends VariantProps<typeof buttonStyles> {
 }
 
 export function Button({
-  intent,
-  outline,
-  size,
+  disabled = false,
   fullWidth,
+  intent,
+  outline = true,
+  size,
   type = "button",
+  onClick,
   children,
   ...props
 }: ButtonProps) {
   return (
-    <button type={type} className={buttonStyles({ intent, outline, fullWidth })} {...props}>
-      <span className={innerStyles({ outline, size })}>{children}</span>
+    <button
+      type={type}
+      className={buttonStyles({ intent, outline, fullWidth })}
+      disabled={disabled}
+      onClick={() => onClick && onClick()}
+      {...props}
+    >
+      <span className={innerStyles({ outline: outline && !disabled, size, disabled })}>
+        {children}
+      </span>
     </button>
   );
 }
