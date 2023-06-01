@@ -76,21 +76,19 @@ export default function AccountMenu() {
           role="menu"
         >
           <div className="p-2">
-            <Link
-              href={`/about`}
-              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-              role="menuitem"
-            >
-              About
-            </Link>
-
-            <Link
-              href={`/account`}
-              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-              role="menuitem"
-            >
-              Account
-            </Link>
+            {[
+              [`About`, `/about`],
+              [`Account`, `/account`],
+              [`Profile`, `/u/${session.user?.id}`],
+            ].map(([name, url]) => (
+              <Link
+                href={url}
+                className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                role="menuitem"
+              >
+                {name}
+              </Link>
+            ))}
           </div>
 
           <div className="p-2">
