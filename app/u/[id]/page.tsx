@@ -3,6 +3,8 @@ export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 import TitleLayout from "@/components/TitleLayout";
+import { PostUpdate } from "@/components/social/PostUpdate";
+import { PostFeed } from "@/components/social/PostFeed";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const user = await prisma.user.findUnique({ where: { id: params.id } });
@@ -21,10 +23,8 @@ export default async function UserProfilePage({ params }: Props) {
 
   return (
     <TitleLayout name={name || "That One Person"}>
-      <img width={300} src={image ?? "/default-avatar.webp"} alt={`${name}'s profile`} />
-
-      <h3>Bio</h3>
-      <p>{bio}</p>
+      <PostUpdate apiUrl="/api" />
+      <PostFeed posts={[]} onReact={() => {}} />
     </TitleLayout>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@ui/Button";
-import Input from "@ui/Input";
-import TextArea from "@ui/TextArea";
+import FormInput from "@form/FormInput";
+import FormTextArea from "@form/FormTextArea";
 
 export function ProfileForm({ user }: any) {
   const updateUser = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,13 +31,13 @@ export function ProfileForm({ user }: any) {
     <div>
       <h3 className="text-xl sm:text-2xl mt-2">Edit Your Profile</h3>
       <form onSubmit={updateUser} className="mb-0 mt-8 max-w-md space-y-4">
-        <Input
+        <FormInput
           name={`name`}
           label={`Name`}
           placeholder={`Enter name`}
           defaultValue={user?.name ?? ""}
         />
-        <TextArea
+        <FormTextArea
           name={`bio`}
           label={`Bio`}
           columns={30}
@@ -45,7 +45,7 @@ export function ProfileForm({ user }: any) {
           placeholder={`Enter bio`}
           defaultValue={user?.bio ?? ""}
         />
-        <Input
+        <FormInput
           name={`image`}
           label={`Profile Image URL`}
           placeholder={`Enter image URL`}
