@@ -1,13 +1,25 @@
+import { cva, VariantProps } from "class-variance-authority";
 import { useEffect, useState, useRef } from "react";
 import * as RadixToast from "@radix-ui/react-toast";
 
-export interface ToastProps {
+const toastStyles = cva("rounded shadow-sm pl-4 pr-4 pt-2 pb-3 items-center", {
+  variants: {
+    intent: {
+      success: "bg-green-600 text-green-200",
+      danger: "bg-red-600 text-red-200",
+    },
+  },
+  defaultVariants: {
+    intent: "success",
+  },
+});
+export interface ToastProps extends VariantProps<typeof toastStyles> {
   title: string;
   description: string;
   trigger: number;
 }
 
-export function Toast({ title, description, trigger }: ToastProps) {
+export function Toast({ title, description, intent, trigger }: ToastProps) {
   const [open, setOpen] = useState(false);
   const timerRef = useRef(0);
 
@@ -28,7 +40,7 @@ export function Toast({ title, description, trigger }: ToastProps) {
   return (
     <RadixToast.Provider swipeDirection="right">
       <RadixToast.Root
-        className="ToastRoot bg-white rounded shadow-sm p-3 items-center"
+        className={`ToastRoot ${toastStyles({ intent })}`}
         open={open}
         onOpenChange={setOpen}
       >

@@ -5,7 +5,7 @@ import { CameraIcon, PencilSquareIcon } from "../Icons";
 import { Button } from "../ui/Button";
 import Heading from "../ui/Heading";
 import { TextArea } from "../ui/TextArea";
-import { Toast } from "../ui/Toast";
+import { Toast, ToastProps } from "../ui/Toast";
 
 export interface PostUpdateProps {
   apiUrl: string;
@@ -20,9 +20,24 @@ const prompts = [
   "Where are you right now?",
 ];
 const timeoutMinutes = 1;
+const toastSuccess: ToastProps = {
+  title: `Success!`,
+  description: `Your post was saved.`,
+  intent: `success`,
+  trigger: 0,
+};
+const toastError: ToastProps = {
+  title: `Error!`,
+  description: `Your post was not saved.`,
+  intent: `danger`,
+  trigger: 0,
+};
 
 export function PostUpdate({ apiUrl, initialContent = "" }: PostUpdateProps) {
-  const [counter, setCounter] = useState(0);
+  const [toast, setToast] = useState({
+    ...toastSuccess,
+    trigger: 0,
+  });
   const [postContent, setPostContent] = useState(initialContent);
   const [isPosting, setIsPosting] = useState(false);
   const [placeholder, setPlaceholder] = useState(() => {
@@ -45,7 +60,7 @@ export function PostUpdate({ apiUrl, initialContent = "" }: PostUpdateProps) {
   const handleClick = async () => {
     setIsPosting(true);
 
-    await fetch(`${apiUrl}/posts`, {
+    const response = await fetch(`${apiUrl}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,9 +68,14 @@ export function PostUpdate({ apiUrl, initialContent = "" }: PostUpdateProps) {
       body: JSON.stringify({ postContent }),
     });
 
-    setPostContent("");
+    if (response.status === 201) {
+      setPostContent("");
+      setToast({ ...toastSuccess, trigger: toast.trigger + 1 });
+    } else {
+      setToast({ ...toastError, trigger: toast.trigger + 1 });
+    }
+
     setIsPosting(false);
-    setCounter(counter + 1);
   };
   const handleUpdate = (value: string) => setPostContent(value);
 
@@ -77,7 +97,7 @@ export function PostUpdate({ apiUrl, initialContent = "" }: PostUpdateProps) {
         <Button type="submit" intent="primary" disabled={isPosting} onClick={() => handleClick()}>
           <PencilSquareIcon /> Post
         </Button>
-        <Toast title={`Success!`} description={`Your post was saved.`} trigger={counter} />
+        <Toast {...toast} />
       </div>
     </div>
   );
