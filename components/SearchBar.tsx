@@ -1,20 +1,17 @@
-'use client'
+"use client";
+
+import { Input } from "@ui/Input";
+import { Button } from "./ui/Button";
 
 export default function SearchBar() {
   return (
     <div className="relative hidden sm:block">
       <label className="sr-only" htmlFor="search">
-        {' '}
-        Search{' '}
+        {" "}
+        Search{" "}
       </label>
 
-      <input
-        className="h-10 w-full rounded-lg border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
-        id="search"
-        type="search"
-        placeholder="Search website..."
-      />
-
+      <Input name="search" placeholder={`Search website...`} />
       <button
         type="button"
         className="absolute end-1 top-1/2 -translate-y-1/2 rounded-md bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
@@ -36,5 +33,5 @@ export default function SearchBar() {
         </svg>
       </button>
     </div>
-  )
+  );
 }

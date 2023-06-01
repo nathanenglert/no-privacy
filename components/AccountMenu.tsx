@@ -52,7 +52,7 @@ export default function AccountMenu() {
         />
 
         <p className="ms-2 hidden text-left text-xs sm:block">
-          <strong className="block font-medium">{session.user?.name}</strong>
+          <strong className="block font-medium text-gray-200">{session.user?.name}</strong>
 
           <span className="text-gray-500">{session.user?.email}</span>
         </p>
