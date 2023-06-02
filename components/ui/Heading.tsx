@@ -1,7 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 import React, { FunctionComponent } from "react";
 
-const headingStyles = cva("inline-flex items-center gap-2", {
+const headingStyles = cva("items-center gap-2", {
   variants: {
     level: {
       1: "text-4xl mb-4 text-pink-500",
@@ -17,10 +17,15 @@ const headingStyles = cva("inline-flex items-center gap-2", {
       secondary: "",
       danger: "",
     },
+    inline: {
+      true: "inline-flex",
+      false: "",
+    },
   },
   // compoundVariants: [{ level: 4, intent: "secondary", class: "text-gray-600" }],
   defaultVariants: {
     intent: "secondary",
+    inline: true,
   },
 });
 
@@ -34,12 +39,13 @@ type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 const Heading: FunctionComponent<HeadingProps> = ({
   level,
   intent,
+  inline,
   children = null,
   ...props
 }: HeadingProps) => {
   const Tag = level === "p" ? "p" : (`h${level}` as HeadingTag);
   return (
-    <Tag className={headingStyles({ intent, level })} {...props}>
+    <Tag className={headingStyles({ intent, level, inline })} {...props}>
       {children}
     </Tag>
   );
