@@ -12,10 +12,9 @@ type Post = {
 
 export interface PostFeedProps {
   posts: Post[];
-  onReact: (postId: string, reaction: string) => void;
 }
 
-export function PostFeed({ posts, onReact }: PostFeedProps) {
+export function PostFeed({ posts }: PostFeedProps) {
   if (posts.length === 0) {
     return (
       <div className="text-center">
@@ -33,7 +32,6 @@ export function PostFeed({ posts, onReact }: PostFeedProps) {
             avatar={post.avatar}
             publishDate={post.publishDate}
             content={post.content}
-            onReact={(reaction) => onReact(post.id, reaction)}
           />
         </li>
       ))}

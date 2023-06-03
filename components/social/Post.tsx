@@ -10,10 +10,9 @@ export interface PostProps {
   avatar: string;
   publishDate: string;
   content: string;
-  onReact?: (reaction: string) => void;
 }
 
-export function Post({ name, avatar, publishDate, content, onReact }: PostProps) {
+export function Post({ name, avatar, publishDate, content }: PostProps) {
   return (
     <article className="rounded bg-gray-800 p-4 pb-2 relative">
       <div className="flex items-center gap-4">
@@ -34,7 +33,8 @@ export function Post({ name, avatar, publishDate, content, onReact }: PostProps)
       <Separator className={`absolute left-0 right-0`} />
       <div className="space-y-2 ml-[-8px] relative">
         {["👍", "❤️", "😂", "👏", "🤯", "🧐"].map((emoji) => (
-          <Button outline={false} size={`xs`} onClick={() => onReact && onReact(emoji)}>
+          <Button outline={false} size={`xs`}>
+            {/* onClick={() => onReact && onReact(emoji)} */}
             {emoji}
           </Button>
         ))}
